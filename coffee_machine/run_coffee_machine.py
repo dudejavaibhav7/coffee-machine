@@ -24,15 +24,9 @@ def divide_chunks(lis: list, n: int):
         yield lis[x:x + n]
 
 
-if __name__ == '__main__':
-    parser: argparse.ArgumentParser = argparse.ArgumentParser()
-    # File Path Argument
-    parser.add_argument('file_path', type=str, help='Input File Path')
-    parser.add_argument('beverage_list', type=str, help='Input beverage List separated by comma')
-    args = parser.parse_args()
-
+def run_coffee_machine(file_path: str, beverage_list: str):
     # Opening File to extract input data
-    with open(args.file_path) as f:
+    with open(file_path) as f:
         input_data = json.load(f)
         # Closing File
         f.close()
@@ -45,7 +39,7 @@ if __name__ == '__main__':
     coffee_machine: CoffeeMachine = CoffeeMachineFactory(coffee_machine_config).create_coffee_machine()
 
     # Creating Input Beverage List from user Input
-    input_beverage_list: List[str] = [beverage.strip() for beverage in args.beverage_list.split(',')]
+    input_beverage_list: List[str] = [beverage.strip() for beverage in beverage_list.split(',')]
     input_beverage_size = len(input_beverage_list)
 
     # Case if size is less than num of outlets
@@ -69,7 +63,7 @@ if __name__ == '__main__':
         # Running Machine for n inputs until we consume all inputs
         for input_beverage_list in n_input_beverage_list:
             print("-----------------------------------")
-            print(f"Starting Coffee Machine for {i}th n beverages")
+            print(f"Starting Coffee Machine for {i}th iteration of n beverages")
             random.shuffle(input_beverage_list)
 
             threads = list()
@@ -84,3 +78,13 @@ if __name__ == '__main__':
                 process.join()
             print("-----------------------------------")
             i += 1
+
+
+if __name__ == '__main__':
+    parser: argparse.ArgumentParser = argparse.ArgumentParser()
+    # File Path Argument
+    parser.add_argument('file_path', type=str, help='Input File Path')
+    parser.add_argument('beverage_list', type=str, help='Input beverage List separated by comma')
+    arguments = parser.parse_args()
+
+    run_coffee_machine(arguments.file_path, arguments.beverage_list)

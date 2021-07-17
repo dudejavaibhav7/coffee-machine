@@ -1,7 +1,7 @@
 from typing import Dict
 
 
-class Beverage(object):
+class Beverage:
     """
         This is a class of a Beverage.
 
@@ -9,7 +9,7 @@ class Beverage(object):
             beverage_ingredients (Dict): The Dictionary containing Beverage Ingredients.
     """
 
-    def __init__(self, name, beverage_ingredients):
+    def __init__(self, name: str, beverage_ingredients: Dict[str, int]):
         """
             The constructor for Beverage class.
 

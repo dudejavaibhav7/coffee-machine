@@ -3,7 +3,7 @@ from typing import Dict
 from coffee_machine.entity.beverage import Beverage
 
 
-class BeverageRepository(object):
+class BeverageRepository:
     """
         This is a class for creating a Beverage Repository.
 
