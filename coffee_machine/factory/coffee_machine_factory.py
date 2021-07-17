@@ -9,11 +9,29 @@ from coffee_machine.entity.inventory import Inventory
 
 
 class CoffeeMachineFactory(object):
+    """
+        This is a class for creating a Coffee Machine.
+
+        Attributes:
+            coffee_machine_config (CoffeeMachineConfig): The configuration related to Coffee Machine.
+    """
 
     def __init__(self, coffee_machine_config: CoffeeMachineConfig):
+        """
+            The constructor for CoffeeMachineFactory class.
+
+            Parameters:
+               coffee_machine_config (CoffeeMachineConfig): The configuration related to Coffee Machine.
+        """
         self.coffee_machine_config = coffee_machine_config
 
     def create_coffee_machine(self):
+        """
+            The function to create Coffee Machine.
+
+            Returns:
+                CoffeeMachine: A Coffee Machine Object containing Inventory, Beverage Repository and Num of Outlets.
+        """
         num_of_outlets: int = self.coffee_machine_config.number_of_outlets
         total_items_quantity: dict = self.coffee_machine_config.total_items_quantity
         beverages: dict = self.coffee_machine_config.beverages
